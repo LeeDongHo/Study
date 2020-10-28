@@ -1,0 +1,15 @@
+<h1>{{ question.question_text}}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<!--폼에 입력된 데이터는 POST 방식으로 보냅니다. 서버측 데이터 변경의 경우 POST 방식 사용-->
+
+<form action="{% url 'maps:vote' question.id %}" method="post">
+    <!-- Cross Site Request Forgeery 공격 대책-->
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+        <input type = "radio" name="choice" id="choice{{ forloop.counter }}" value="{{choice.id}}"/>
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+    {% endfor %}
+<input type="submit" value="Vote" />
+</form>
