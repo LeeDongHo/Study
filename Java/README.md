@@ -1,6 +1,8 @@
 # JAVA 
 
 * IDE : IntelliJ IDEA 2020.2.1
+
+1. [배열](#배열)
   
 
 **자바 실행 과정**   
@@ -13,5 +15,15 @@
 **단축키**
 psvm + TAB : public static void main() 함수 생성
 
+## 배열
+
+```
+    int[][] arrays;
+    int arrays[][];
+    intp[] arrays[];
+```
+* C++과 기본 개념은 같다. 
+  
+2차원 배열일 때 주소값은 어떻게 될까???
 ### 참고
 * 『혼자 공부하는 자바』신용권저, 한빛미디어 
