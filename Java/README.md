@@ -2,8 +2,11 @@
 
 * IDE : IntelliJ IDEA 2020.2.1
 
-1. [Java](#Java)
-2. [배열](#배열)
+- [JAVA](#java)
+  - [Java](#java-1)
+  - [변수](#변수)
+  - [배열](#배열)
+    - [참고](#참고)
   
 
 **자바 실행 과정**   
@@ -45,6 +48,39 @@ psvm + TAB : public static void main() 함수 생성
     3. 지정된 클래스에서 main(String[] args)를 호출한다.
   ```
 
+## 변수
+  * 기본형 (Primitive type) : boolean, char, byte, short, int, long, float, double   
+  
+    |자료형|크기|저장 가능한 범위|종류|
+    |--|--|:--:|:--:|
+    |boolean|1byte| true, false| 논리형
+    |byte|1byte|-128 ~ 127|정수형
+    |short|2byte|-32.768 ~ 32,767|정수형
+    |char|2byte|0 ~ 65536 |문자형
+    |int|4byte|-2,147,483,648 ~ 2,147,483,647|정수형
+    |float|4byte|1.4E-45 ~ 3.4028235E38|실수형
+    |long|8byte|-9,223,372,036,854,775,808 ~ 9,223,372,036,854,77,807|정수형
+    |double|8byte|4.9E-324 ~ 1.7976931348623157E308|실수형   
+    * C/C++ 에서 char은 1byte (ASCII)였다. 하지만 JAVA의 char은 2byte (UNICODE)라는 차이가 있다. JAVA의 char의 범위는 C/C++의 unsigned short 와 같다.
+    * JVM은 피연산자를 4byte단위로 저장하기 때문에 크기가 4byte보다 작은 자료형들 (byte, short)을 연산할 때는 int를 사용하는 것이 효율적이다.
+
+
+  * 기본형 - **실수형**
+    * float : 1 + 8 + 23 = 32bit = 4byte  
+      |부호|지수|가수|
+      |:--:|:--:|:--:|
+      |1|8|23|
+    * double : 1 + 11 + 52 = 64bit = 8byte  
+      |부호|지수|가수|
+      |:--:|:--:|:--:|
+      |1|11|52|
+  
+  * 참조형 (Reference type) : Primitive type 8개를 제외한 나머지, 객체의 주소를 저장
+  * 형 변환 (casting)
+    * 자동 형변환 : 캐스트 연산자를 생략한 경우엔 JVM이 자동적으로 형변환 한다. 이때 큰 자료형에서 작은 자료형으로 변환은 값 손실의 우려가 있어 자동 형변환이 적용되지 않는다.
+    ![casting](./img/casting.png)
+    * 연산에서 형변환은 int보다 작은 경우 int로, int보다 큰 경우 큰 자료형에 맞춰진다.
+  * JAVA에서 상수는 final이다. (C++은 const 이다)
 ## 배열
 
 ```
