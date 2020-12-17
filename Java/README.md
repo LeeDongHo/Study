@@ -81,6 +81,8 @@ psvm + TAB : public static void main() 함수 생성
     ![casting](./img/casting.png)
     * 연산에서 형변환은 int보다 작은 경우 int로, int보다 큰 경우 큰 자료형에 맞춰진다.
   * JAVA에서 상수는 final이다. (C++은 const 이다)
+
+  * 클래스 변수 (공유 변수) : 멤버 변수 중에 static이 붙은 것, 모든 인스턴스가 공통된 변수를 공유한다. 클래스가 로딩될때 생성되어 프로그램이 종료될 때 까지 유지되며, public을 앞에 붙이면 전역변수의 성격을 갖는다.
 ## 배열
 
 ```
