@@ -83,6 +83,17 @@ psvm + TAB : public static void main() 함수 생성
   * JAVA에서 상수는 final이다. (C++은 const 이다)
 
   * 클래스 변수 (공유 변수) : 멤버 변수 중에 static이 붙은 것, 모든 인스턴스가 공통된 변수를 공유한다. 클래스가 로딩될때 생성되어 프로그램이 종료될 때 까지 유지되며, public을 앞에 붙이면 전역변수의 성격을 갖는다.
+  * Explicit Initialization : 변수 선언과 동시에 초기화하는 것.
+  * Initialization Block
+    ```
+    class InitBlock {
+        static { /* Class initialization block */ }
+        
+        { /* Instance initialization block */ }
+    }
+    ```
+    * Class initialization block : instance initialization block + static
+    * Instance initialization block : 클래스 내부 {}에 코드 작성
 ## 배열
 
 ```
