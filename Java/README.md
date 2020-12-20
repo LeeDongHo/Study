@@ -86,14 +86,43 @@ psvm + TAB : public static void main() 함수 생성
   * Explicit Initialization : 변수 선언과 동시에 초기화하는 것.
   * Initialization Block
     ```
-    class InitBlock {
-        static { /* Class initialization block */ }
-        
-        { /* Instance initialization block */ }
+    class BlockTest {
+
+      static {
+        System.out.println("static{ }");
+      }
+
+      {
+        System.out.println("{ }");
+      }
+
+      public BlockTest() {
+        System.out.println("생성자");
+      }
+
+      public static void main(String args[]) {
+        System.out.println("BlockTest bt = new BlockTest();");
+        BlockTest bt = new BlockTest();
+
+        System.out.println("BlockTest bt2 = new BlockTest();");
+        BlockTest bt2 = new BlockTest();
+      }
     }
+
+    ----------------------------------------------------------------------------------
+    static{ }
+    BlockTest bt = new BlockTest();
+    { }
+    생성자
+    BlockTest bt2 = new BlockTesT();
+    { }
+    생성자
     ```
     * Class initialization block : instance initialization block + static
+      * 클래스가 메모리에 처음 로드될 때 한번만 수행된다.
     * Instance initialization block : 클래스 내부 {}에 코드 작성
+      * 생성자 같이 인스턴스 생성할 때 마다 수행되지만 생성자보다 먼저 호출된다.
+      * 모든 생성자에서 공통적으로 수행되는 코드를 인스턴스 초기화 블록에 넣어둘 수 있다.
 ## 배열
 
 ```
