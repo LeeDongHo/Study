@@ -83,46 +83,53 @@ psvm + TAB : public static void main() 함수 생성
   * JAVA에서 상수는 final이다. (C++은 const 이다)
 
   * 클래스 변수 (공유 변수) : 멤버 변수 중에 static이 붙은 것, 모든 인스턴스가 공통된 변수를 공유한다. 클래스가 로딩될때 생성되어 프로그램이 종료될 때 까지 유지되며, public을 앞에 붙이면 전역변수의 성격을 갖는다.
-  * Explicit Initialization : 변수 선언과 동시에 초기화하는 것.
-  * Initialization Block
-    ```
-    class BlockTest {
+  * Initialization 
+    * **초기화 순서** : Default -> Explicit -> Block -> (Constructor)
+    * **Explicit Initialization** : 변수 선언과 동시에 초기화하는 것.
+    * **Initialization Block**
+      ```
+      class BlockTest {
+        // Class initialization block
+        static {
+          System.out.println("static{ }");
+        }
 
-      static {
-        System.out.println("static{ }");
+
+        // Instance initialization block
+        {
+          System.out.println("{ }");
+        }
+
+        public BlockTest() {
+          System.out.println("생성자");
+        }
+
+        public static void main(String args[]) {
+          System.out.println("BlockTest bt = new BlockTest();");
+          BlockTest bt = new BlockTest();
+
+          System.out.println("BlockTest bt2 = new BlockTest();");
+          BlockTest bt2 = new BlockTest();
+        }
       }
 
-      {
-        System.out.println("{ }");
-      }
+      --------------------------------------[output]------------------------------------
 
-      public BlockTest() {
-        System.out.println("생성자");
-      }
+      static{ }
+      BlockTest bt = new BlockTest();
+      { }
+      생성자
+      BlockTest bt2 = new BlockTesT();
+      { }
+      생성자
+      ```
+      * Class initialization block : instance initialization block + static
+        * 클래스가 메모리에 처음 로드될 때 한번만 수행된다.
+      * Instance initialization block : 클래스 내부 {}에 코드 작성
+        * 생성자 같이 인스턴스 생성할 때 마다 수행되지만 생성자보다 먼저 호출된다.
+        * 모든 생성자에서 공통적으로 수행되는 코드를 인스턴스 초기화 블록에 넣어둘 수 있다.
 
-      public static void main(String args[]) {
-        System.out.println("BlockTest bt = new BlockTest();");
-        BlockTest bt = new BlockTest();
-
-        System.out.println("BlockTest bt2 = new BlockTest();");
-        BlockTest bt2 = new BlockTest();
-      }
-    }
-
-    ----------------------------------------------------------------------------------
-    static{ }
-    BlockTest bt = new BlockTest();
-    { }
-    생성자
-    BlockTest bt2 = new BlockTesT();
-    { }
-    생성자
-    ```
-    * Class initialization block : instance initialization block + static
-      * 클래스가 메모리에 처음 로드될 때 한번만 수행된다.
-    * Instance initialization block : 클래스 내부 {}에 코드 작성
-      * 생성자 같이 인스턴스 생성할 때 마다 수행되지만 생성자보다 먼저 호출된다.
-      * 모든 생성자에서 공통적으로 수행되는 코드를 인스턴스 초기화 블록에 넣어둘 수 있다.
+    * JVM의 종류에 따라 클래스의 로딩시기가 달라질 수 있다. 클래스가 필요할 때 바로 메모리에 로딩하도록 설꼐가 되어있는 것도 있고, 실행효율을 높이기 위해서 사용될 클래스들을 프로그램이 시작될 때 미리 로딩하도록 되어있는 것도 있다.
 ## 배열
 
 ```
