@@ -172,6 +172,27 @@ psvm + TAB : public static void main() 함수 생성
 * 기본 속성
 * 제어자
   * 접근 제어자
+    ```
+      public > protected > default > private
+    ```
+    * default : 같은 패키지, 클래스 내에서만 접근 가능하다.
+    * protected : 같은 패키지, 다른 패키지의 자식 클래스 내에서만 접근이 가능하다.
+    * private : 같은 클래스 내에서만 접근이 가능하다.
+      * 생성자를 private로 선언해서 인스턴스의 생성을 제한할 수 있다. 이런 경우 부모 클래스가 될 수 도 없기에 final 클래스로 선언해주는 것이 더 명시적이다.
+      ```
+      class Singleton {
+        private static Singleton instance = new Singleton();
+
+        private Singletone() {
+          // 생성자
+        }
+
+        private static Singleton getInstance() {
+          return instance;
+        }
+      }
+      ``` 
+      * private는 클래스 내부에서 호출이 가능하기 때문에 static에서 new Singleton()이 호출 성공한다.
   * static
     * static은 멤버변수, 메서드, 초기화 블럭에서 사용할 수 있다. 
     * 클래스가 메모리에 로드될 때 생성된다.
