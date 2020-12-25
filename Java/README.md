@@ -228,9 +228,85 @@ psvm + TAB : public static void main() 함수 생성
       abstract void move();         // 추상 메서드
     }
     ``` 
-* 다형성
+  1. 메서드에 static, abstract를 함께 사용할 수 없다. -> static은 body가 필요하다.
+  2. abstract, final을 함께 사용할 수 없다.
+  3. abstract의 접근자가 private일 수 없다.
+  4. 메서드에 private, final을 같이 사용할 필요는 없다. 둘중 하나만 해도 오버라이딩이 불가능하기 때문이다.
+* 다형성 : 부모 클래스의 참조변수로 자식 클래스의 인스턴스를 참조할 수 있도록 한 것.
+  ```
+  // 자식 타입으로 조상 인스턴스 참조 - 오류
+    Child c = new Parent();   // 자식 클래스의 멤버를 갖고있지 않아서 오류발생
+    Parent p = new Child();   // 가능
+  ```
   * 참조변수
+    * 서로 상속관계에 있는 참조변수만 **형변환**이 가능하다.
+    ```
+      class Car {
+        String  color;
+        int     doorCount;
+        void drive() {
+          Systsem.out.println("Drive");
+        }
+        void stop() {
+          System.out.println("Stop");
+        }
+      }
+
+      class FireEngine extends Car {
+        void water() {
+          System.out.println("Water");
+        }
+      }
+
+      clss Ambulance extends Car {
+        void siren() {
+          System.out.println("Siren");
+        }
+      }
+
+    ----------------------------------------------------------------
+
+    class Test {
+      pullic static void main(String[] args) {
+        Car car = null;
+        FireEngine fe = new FireEngine();
+        FireEngine fe2 = null;
+
+        car = fe;               // Up-Casting : 형변환 생략 가능
+        fe2 = (FireEngine)car;  // Down-Casting : 형변환 생략 불가능
+      }
+    }
+    ``` 
+    * 형변환은 참조변수의 타입만 변화시키는 것 이기 때문에 인스턴스에는 영향을 주지 않는다. 단지 참조변수의 형변환을 통해서 참조하고 있는 인스턴스에서 사용할 멤버의 범위를 조절하는 것 뿐이다.
   * instanceof
+    * 참조변수가 참조하고 있는 인스턴스의 실제 타입을 알아보는 용도로 사용
+    * return is boolean
+    ```
+      public class InstanceofTest {
+        public static void main(String[] args) {
+            FireEngine fe = new FireEngine();
+
+            if(fe instanceof FireEngine) {
+                System.out.println("This is a FireEngine instance.");
+            }
+
+            if(fe instanceof Car) {
+                System.out.println("This is a Car instance");
+            }
+
+            if(fe instanceof Object) {
+                System.out.println("This is a Object instance");
+            }
+        }
+      }
+
+      class Car {}
+      class FireEngine() {}
+      -------------------------------------------------------------------------
+      This is a FireEngine instance.
+      This is a Car instance
+      This is a Object instance
+    ``` 
 * 추상클래스
 * 인터페이스
 
