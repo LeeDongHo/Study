@@ -276,8 +276,31 @@ psvm + TAB : public static void main() 함수 생성
         fe2 = (FireEngine)car;  // Down-Casting : 형변환 생략 불가능
       }
     }
+
+    ----------------------------------------------------------------
+    // 상속을 이용한 참조변수의 다형성
+    class Product {
+      int price;
+      int bonusPoint;
+    }
+
+    class Tv extends Product { }
+    class Computer extends Product { }
+    class Audio extends Product { }
+
+    class Buyer {
+      Vector item = new Vector();
+      // Product[] items = new Product[10];
+
+      void buy(Product p)
+      {
+        System.out.println(p);
+      }
+    }
     ``` 
     * 형변환은 참조변수의 타입만 변화시키는 것 이기 때문에 인스턴스에는 영향을 주지 않는다. 단지 참조변수의 형변환을 통해서 참조하고 있는 인스턴스에서 사용할 멤버의 범위를 조절하는 것 뿐이다.
+    * 모든 클래스는 Object 클래스를 상속 받고 있다.
+    * 참조변수의 출력이나 덧셈연산자를 이용한 문자열 결합에는 toString()이 자동적으로 호출된다.
   * instanceof
     * 참조변수가 참조하고 있는 인스턴스의 실제 타입을 알아보는 용도로 사용
     * return is boolean
@@ -308,7 +331,17 @@ psvm + TAB : public static void main() 함수 생성
       This is a Object instance
     ``` 
 * 추상클래스
+  * 추상메서드를 포함하는 클래스, 추상 메서드를 포함하지 않은 클래스에 abstract 를 붙이면 인스턴스 생성을 할 수 없게된다. (추상 클래스는 인스턴스 생성을 할 수 없다.)
+  * 이를 사용하는 이유는 자식 클래스에서 오버라이딩을 강제하기 위해서이다.
 * 인터페이스
+  * 추상 클래스보다 더 추상적인 개념이다. 
+  * 오직 추상 메서드(public abstract)와 상수(public static final)만을 멤버로 가질 수 있다.
+  * 인터페이스는 extends가 아니라 implements 키워드를 사용한다.
+  * 인터페이스는 다중 구현 가능하며, 상속과 구현을 동시에 할 수도 있다.
+  * 다형성
+    ```
+      
+    ``` 
 
 ### 참고
 * 『혼자 공부하는 자바』신용권저, 한빛미디어 
