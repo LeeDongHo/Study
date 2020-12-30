@@ -8,8 +8,10 @@
   - [배열](#배열)
   - [객체지향](#객체지향)
   - [예외처리](#예외처리)
-    - [프로그램 실행 중 발생할 수 있는 예외에 대한 처리를 함으로써 프로그램의 비정상 종료를 막고 정상적인 실행상태를 유지하는 것.](#프로그램-실행-중-발생할-수-있는-예외에-대한-처리를-함으로써-프로그램의-비정상-종료를-막고-정상적인-실행상태를-유지하는-것)
-    - [참고](#참고)
+  - [문자열](#문자열)
+    - [String](#string)
+    - [StringBuffer](#stringbuffer)
+  - [참고](#참고)
   
 
 **자바 실행 과정**   
@@ -342,7 +344,7 @@ psvm + TAB : public static void main() 함수 생성
   * 인터페이스는 다중 구현 가능하며, 상속과 구현을 동시에 할 수도 있다.
 
 ## 예외처리
-  ### 프로그램 실행 중 발생할 수 있는 예외에 대한 처리를 함으로써 프로그램의 비정상 종료를 막고 정상적인 실행상태를 유지하는 것.
+  프로그램 실행 중 발생할 수 있는 예외에 대한 처리를 함으로써 프로그램의 비정상 종료를 막고 정상적인 실행상태를 유지하는 것.
 * 컴파일 에러 : 컴파일 할 때 발생하는 에러
 * 런타임 에러 : 프로그램의 실행도중에 발생하는 에러
   * Error   : OutOfMemoryError, StackOverflowError - 복구 불가능
@@ -353,6 +355,17 @@ psvm + TAB : public static void main() 함수 생성
 * try-catch에서 생성된 예외 클래스의 인스턴스에 instanceof연사자를 이용해 일치하는지 순차적으로 검사 (C++ switch와 같은 로직)
 * try-catch 마지막에 Exception 클래스 타입 참조변수를 선업합시다.
 
-### 참고
+## 문자열
+  ### String
+    ```
+     public final class String implements java.io.Serializable, Comparable {
+     /* *The value is used for character storage.*/
+      private char[] value;
+     ...
+     }
+     ```
+  ### StringBuffer
+
+## 참고
 * 『혼자 공부하는 자바』신용권저, 한빛미디어 
 * 『자바의 정석 2판』 남궁 성저, 도우 출판
