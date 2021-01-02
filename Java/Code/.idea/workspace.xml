@@ -19,7 +19,33 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3f2dcca-274f-48f4-9314-08c903492de3" name="Default Changelist" comment="" />
+    <list default="true" id="e5119bd9-ab48-42f0-8915-cb75ab4fe55e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch2/src/tutorial/SuperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SuperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SuperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch1/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch1/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch1/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch1/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch1/bin/com/example/helloworld/HelloWorld.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch1/ch1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch1/out/production/ch1/com/example/helloworld/HelloWorld.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch1/src/com/example/helloworld/HelloWorld.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch1/src/module-info.java/com/example/helloworld/HelloWorld.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch2/ch2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch2/out/production/ch2/com/ch2/variable/test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Hongong/ch2/src/com/ch2/variable/test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cpp/2020_2_console_editor" beforeDir="false" afterPath="$PROJECT_DIR$/../../cpp/2020_2_console_editor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cpp/cpprestsdk/Project1/restModule.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cpp/cpprestsdk/Project1/restModule.h" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,7 +61,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectId" id="1hS9OyrMxWMjGc8AB7M42ZqZHMR" />
+  <component name="ProjectId" id="1m11ElU5RiS0tqsf75wVg6ZF48w" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -45,62 +71,79 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ch1" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Application.HelloWorld">
-    <configuration name="Hello" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sec03.exam01.Hello" />
-      <module name="ch1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sec03.exam01.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\EDH\git\study\Java\code\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.CloneTest">
+    <configuration name="CloneTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CloneTest" />
+      <module name="code" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HelloWorld" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.helloworld.HelloWorld" />
-      <module name="ch1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.helloworld.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration name="InstanceofTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="InstanceofTest" />
+      <module name="code" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
+    <configuration name="InterfaceTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="InterfaceTest" />
+      <module name="code" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PrivateConstructor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="PrivateConstructor" />
+      <module name="code" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SuperTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SuperTest" />
+      <module name="code" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HelloWorld" />
-        <item itemvalue="Application.Hello" />
+        <item itemvalue="Application.CloneTest" />
+        <item itemvalue="Application.InterfaceTest" />
+        <item itemvalue="Application.InstanceofTest" />
+        <item itemvalue="Application.PrivateConstructor" />
+        <item itemvalue="Application.SuperTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e3f2dcca-274f-48f4-9314-08c903492de3" name="Default Changelist" comment="" />
-      <created>1599993599743</created>
+      <changelist id="e5119bd9-ab48-42f0-8915-cb75ab4fe55e" name="Default Changelist" comment="" />
+      <created>1608646176120</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1599993599743</updated>
-      <workItem from="1599993600817" duration="2779000" />
+      <updated>1608646176120</updated>
+      <workItem from="1608646177199" duration="2647000" />
+      <workItem from="1608680067119" duration="3683000" />
+      <workItem from="1608784271087" duration="5541000" />
+      <workItem from="1608865706600" duration="2039000" />
+      <workItem from="1609043032328" duration="1380000" />
+      <workItem from="1609130343868" duration="6329000" />
+      <workItem from="1609218633669" duration="2030000" />
+      <workItem from="1609308060932" duration="2935000" />
+      <workItem from="1609479514630" duration="2403000" />
+      <workItem from="1609564805593" duration="1285000" />
     </task>
     <servers />
   </component>
@@ -117,35 +160,47 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="615" y="203" width="1099" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600002657295">
+    <state x="308" y="0" key="#Project_Structure" timestamp="1608646187296">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="615" y="203" width="1099" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600002657295" />
-    <state x="892" y="253" key="FileChooserDialogImpl" timestamp="1600002673456">
+    <state x="308" y="0" key="#Project_Structure/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1608646187295" />
+    <state width="1738" height="255" key="GridCell.Tab.0.bottom" timestamp="1609315176870">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="892" y="253" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1600002673456" />
-    <state width="1328" height="251" key="GridCell.Tab.0.bottom" timestamp="1600002674803">
+    <state width="1738" height="255" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1609315176870" />
+    <state width="1738" height="262" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1608648279823" />
+    <state width="1738" height="255" key="GridCell.Tab.0.center" timestamp="1609315176870">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1328" height="251" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600002674803" />
-    <state width="1328" height="251" key="GridCell.Tab.0.center" timestamp="1600002674803">
+    <state width="1738" height="255" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1609315176870" />
+    <state width="1738" height="262" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1608648279823" />
+    <state width="1738" height="255" key="GridCell.Tab.0.left" timestamp="1609315176870">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1328" height="251" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600002674803" />
-    <state width="1328" height="251" key="GridCell.Tab.0.left" timestamp="1600002674803">
+    <state width="1738" height="255" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1609315176870" />
+    <state width="1738" height="262" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1608648279823" />
+    <state width="1738" height="255" key="GridCell.Tab.0.right" timestamp="1609315176870">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1328" height="251" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600002674803" />
-    <state width="1328" height="251" key="GridCell.Tab.0.right" timestamp="1600002674803">
+    <state width="1738" height="255" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1609315176870" />
+    <state width="1738" height="262" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1608648279823" />
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1609142687866">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1328" height="251" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600002674803" />
-    <state x="744" y="5" key="search.everywhere.popup" timestamp="1600002626641">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="744" y="5" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600002626641" />
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1609142687866" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/InterfaceTest.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -357,13 +357,29 @@ psvm + TAB : public static void main() 함수 생성
 
 ## 문자열
   ### String
-    ```
-     public final class String implements java.io.Serializable, Comparable {
-     /* *The value is used for character storage.*/
+    public final class String implements java.io.Serializable, Comparable 
+    {
+      /* *The value is used for character storage.*/
       private char[] value;
-     ...
-     }
-     ```
+      ...
+    }
+  * String 클래스는 final 형식이다. 그래서 인스턴스가 갖고 있는 문자열(Value)는 변경할 수 없다. 사용할 때 + 연산자를 이용해 문자열 결합되는 상황은 기존 문자열에 추가되는 것이 아니라 새로운 문자열을 가진 인스턴스가 생성되는 것 이다.
+  * String 생성자를 사용해 인스턴스 생성하는 것과 문자열 리터럴을 이용해 인스턴스 생성한 것은 인스턴스 주소 값에 차이를 갖는다.
+    ```
+      String s1 = "AAA"
+      String s2 = new String("AAA");
+
+      if(s1==s2)
+        System.out.println("s1==s2");
+      else
+        System.out.println("s1!=s2");
+
+      if(s1.equals(s2))
+        System.out.println("s1.equals is true");
+      else
+        System.out.println("s1.equals is false");
+    ``` 
+
   ### StringBuffer
 
 ## 참고
