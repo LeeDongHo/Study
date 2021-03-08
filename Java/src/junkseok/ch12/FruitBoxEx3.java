@@ -13,7 +13,16 @@ class Juice {
 }
 
 class Juicer {
+    /*
     static Juice makeJuice(FruitBox2<? extends Fruit2> box) {
+        String tmp = "";
+        for(Fruit2 f : box.getList())
+            tmp += f + " ";
+        return new Juice(tmp);
+    }
+    */
+    // Generic method
+    static <T extends Fruit2> Juice makeJuice(FruitBox2<T> box) {
         String tmp = "";
         for(Fruit2 f : box.getList())
             tmp += f + " ";
@@ -42,7 +51,8 @@ public class FruitBoxEx3 {
         apple2Box2.add(new Apple2());
         apple2Box2.add(new Apple2());
 
-        System.out.println(Juicer.makeJuice(fruitBox2));
+        //System.out.println(Juicer.<Fruit2>makeJuice(fruitBox2));
+        System.out.println(Juicer.makeJuice(fruitBox2));    // Juicer 선어부를 통해 컴파일러가 타입을 추측할 수 있어서 허용되는 구문
         System.out.println(Juicer.makeJuice(apple2Box2));
     }
 }
