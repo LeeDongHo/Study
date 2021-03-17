@@ -1,9 +1,10 @@
 # JSP&Servlet
 자바 웹을 다루는 기술 - 길벗  
 시작일 : 2021.03.15   
+[[저자 유투브 링크]](https://youtube.com/playlist?list=PLuvImYntyp-s76lJiia8YfskDRAypeoyh)   
 **Version**   
 * JDK 11   
-* Tomcat 10
+* Tomcat 9
 * Eclipse 
 * Oracle database 18c EX
 * SQL Developer 20.4.1
@@ -25,6 +26,10 @@
   lib      | Web Application에서 사용되는 라이브러리 압축 파일(jar)이 저장. lib의 jar은 classpath자동설정|
   web_xml |배치 지시자(Deployment descriptor)로 일종의 환경 설정 파일
 ---
+|프로젝트 명|설명|
+|--|--|
+|pro1|서블릿 기초 예제|
+----
 ## **목차**
 1. [이론](#이론)
 
@@ -52,6 +57,10 @@
 |초기화|init()| 서블릿 요청시 맨 처음 한번만 호출되며, 서블릿 생성시 초기화 작업 수행|
 |작업|doGet()<br>doPost()|서블릿 요청시 매번 호출, 실제 요청된 작업을 수행|
 |종료|destroy()|서블릿이 메모리에서 소멸될 때 호출, 마무리 작업 수행|
+* 예제 코드에서 Constructor()에 대한 설명이 생략된 이유는 아래와 같다. <수정 요망>
+  * HttpServlet는 Servlet, ServletConfig 인터페이스를 상속받았다.
+  * JDK 1.0version에선 생성자에 parameter를 넣을 수 없었다.
+  * ??
 * init(), destroy()는 요구사항에 따라 생략할 수 있다.
 * **doXX()** 는 서블릿의 핵심 기능을 처리하므로 **반드시 구현**해야한다.
 * doGet(HttpServletRequest req, HttpServletResponse res) => req, res 객체 생성 후 서블릿의 메서드를 호출한다.
@@ -101,6 +110,32 @@ http://ip:port/project/package.class
 
 http://ip:port/project/servlet-mapping
 -> http://localhost:8080/pro1/aaa
+```
+
+### **MIME-TYPE**
+* 웹 브라우저에서 데이터를 전송할 때 톰캣 컨테이너에서 미리 설정해 제공하는 데이터 종류들
+* CATALINA_HOME\conf\web.xml
+```xml
+<!--XML-->
+    <mime-mapping>
+        <extension>xml</extension>
+        <mime-type>application/xml</mime-type>
+    </mime-mapping>
+<!--txt-->
+    <mime-mapping>
+        <extension>js</extension>
+        <mime-type>text/plain</mime-type>
+    </mime-mapping>
+<!--JS-->
+    <mime-mapping>
+        <extension>js</extension>
+        <mime-type>application/javascript</mime-type>
+    </mime-mapping>
+<!--JSON-->
+    <mime-mapping>
+        <extension>json</extension>
+        <mime-type>application/json</mime-type>
+    </mime-mapping>
 ```
 ---
 ## **변경점**
