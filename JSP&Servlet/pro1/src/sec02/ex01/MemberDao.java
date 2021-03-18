@@ -1,8 +1,8 @@
 package sec02.ex01;
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
-import java.util.Date;
 
 public class MemberDao {
     private static final String driver = "oracle.jdbc.driver.OracleDriver";
@@ -11,7 +11,8 @@ public class MemberDao {
     private static final String password = "dkswlsl";
 
     private Connection con;
-    private Statement statement;
+    private PreparedStatement statement;
+    //private Statement statement;
 
     public List<MemberDto> listMembers() {
         List<MemberDto> list = new ArrayList<>();
@@ -19,7 +20,10 @@ public class MemberDao {
             connect();
             String query = "select * from member";
             System.out.println("Query : " + query);
-            ResultSet rs = statement.executeQuery(query);
+            //ResultSet ps = statement.executeQuery(query);
+            // PrepareStatement
+            statement = con.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String id = rs.getString("id");
                 String password = rs.getString("password");
@@ -34,12 +38,12 @@ public class MemberDao {
                 memberDto.setEmail(email);
                 memberDto.setJoinDate(joinDate);
                 list.add(memberDto);
-
-                // finally
-                rs.close();
-                statement.close();
-                con.close();
             }
+
+            // finally
+            rs.close();
+            statement.close();
+            con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,9 +53,10 @@ public class MemberDao {
     private void connect() throws SQLException, ClassNotFoundException{
         Class.forName(driver);
         System.out.println("Oracle driver loading success.");
-        con = DriverManager.getConnection(url,user,password);
+        con = DriverManager.getConnection(url, user, password);
         System.out.println("Connect success.");
-        statement = con.createStatement();
-        System.out.println("Statement create success.");
+        // PrepareStatement
+        //statement = con.createStatement();
+        //.out.println("Statement create success.");
     }
 }
