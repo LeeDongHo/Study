@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <script type="text/javascript">
+        function Send() {
+            let insertForm = document.insertForm;
+            let id = insertForm.id.value;
+            let password = insertForm.password.value;
+            let name = insertForm.name.value;
+            let email = insertForm.email.value;
+
+            if(id.length == 0 || id=="") {
+                alert("아이디는 필수 입니다.");
+            } else if (password.length == 0 || password == "") {
+                alert("Please insert password");
+            } else if ( email.length == 0 || email == "") {
+                alert("Please insert password");
+            } else if (name.length == 0 || name == "") {
+                alert("Please insert password");
+            } else {
+                insertForm.method = "POST";
+                insertForm.action = "member"
+                insertForm.submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="insertForm">
+        <table>
+            <th> 회 원 가 입</th>
+            <tr>
+                <td> ID </td>
+                <td><input type="text" name="id"></td>
+            </tr>
+            <tr>
+                <td> PASSWORD </td>
+                <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td> NAME </td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td> EMAIL </td>
+                <td><input type="text" name="email"></td>
+            </tr>
+        </table>
+        <input type="button" value="submit" onclick="Send()">
+        <input type="reset" value="reset">
+        <input type="hidden" name="command" value="insertMember" />
+    </form>
+</body>
+</html>

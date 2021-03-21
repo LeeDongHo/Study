@@ -70,4 +70,10 @@
   	<servlet-name>bbb</servlet-name>
   	<url-pattern>/second</url-pattern>
   </servlet-mapping>
+  <resource-ref>
+    <description>JNDI Oracle</description>
+    <res-ref-name>jdbc/oracle</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
 </web-app>

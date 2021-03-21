@@ -1,7 +1,9 @@
 package sec02.ex01;
 
-import oracle.jdbc.pool.OracleDataSource;
-
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
@@ -17,19 +19,24 @@ public class MemberDao {
     private Connection con;
     //private Statement statement;
     private PreparedStatement statement;
-    private OracleDataSource ods;
+    private DataSource ods;
+
+    public MemberDao() {
+        try{
+            System.out.println("init");
+            Context ctx = new InitialContext();
+            Context envCtx =  (Context)ctx.lookup("java:/comp/env");
+            ods = (DataSource) envCtx.lookup("jdbc/oracle");
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+    }
 
     public List<MemberDto> listMembers() {
         List<MemberDto> list = new ArrayList<>();
-
-
         try {
-            ods = new OracleDataSource();
-            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
-            ods.setUser("c##doho");
-            ods.setPassword("dkswlsl");
-
-            connect();
+            System.out.println("connect");
+            con = ods.getConnection();
             String query = "select * from member";
             System.out.println("Query : " + query);
             //ResultSet ps = statement.executeQuery(query);
@@ -62,35 +69,47 @@ public class MemberDao {
         return list;
     }
 
-    public void insertMember(String id, String password, String name, String email) {
+    public void insertMember(MemberDto dto) {
         try {
-            connect();
-            String query = "insert into member(id, password, name, email, joinDate) values (?,?,?,?,?)";
+            con = ods.getConnection();
+            String query = "insert into member(id, password, name, email) values (?,?,?,?)";
             statement = con.prepareStatement(query);
-            statement.setString(1,id);
-            statement.setString(2,password);
-            statement.setString(3,name);
-            statement.setString(4,email);
+            statement.setString(1,dto.getId());
+            statement.setString(2,dto.getPassword());
+            statement.setString(3,dto.getName());
+            statement.setString(4,dto.getEmail());
 
             boolean result = statement.execute();
 
             statement.close();;
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void connect() throws SQLException, ClassNotFoundException{
-        /*
+    public void deleteMember(MemberDto dto) {
+        try {
+            con = ods.getConnection();
+            String query = "delete from member where id=?";
+            statement = con.prepareStatement(query);
+            statement.setString(1,dto.getId());
+            statement.execute();
+            statement.close();
+        } catch (Exception e) {
+
+        }
+    }
+
+    /*    private void connect() throws SQLException, ClassNotFoundException{
+        *//*
         Class.forName(driver);
         System.out.println("Oracle driver loading success.");
-        */
+        *//*
         //con = DriverManager.getConnection(url, user, password);
         con = ods.getConnection();
         System.out.println("Connect success.");
         // PrepareStatement
         //statement = con.createStatement();
         //.out.println("Statement create success.");
-    }
+    }*/
 }

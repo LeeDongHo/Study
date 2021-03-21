@@ -144,4 +144,9 @@ http://ip:port/project/servlet-mapping
       * oracle 12c 부터 계정앞에 C## 추가   
       [[common_user_prefix]](https://docs.oracle.com/database/121/REFRN/GUID-516ADCCF-3661-4B54-908A-7041854EA14F.htm#REFRN10354) / [[ErrorCode]](https://docs.oracle.com/en/database/oracle/oracle-database/18/errmg/ORA-60001.html#GUID-9B78A028-D760-4810-9CFC-9013FBD1FCC9)   
    * TODO : **create user C##scott identified by tiger;**
-2.
+2. JDBC DriverManager -> OracleDataSource 사용
+     * [oracle.jdbc.pool.OracleDataSource](https://docs.oracle.com/cd/E16338_01/appdev.112/e13995/oracle/jdbc/pool/OracleDataSource.html) extends java.lang.Object / **implements javax.sql.DataSource** ...
+     * context.xml, web.xml 수정하지 않아도 jdbc 이용 가능.
+
+3. driverClassName="oracle.jdbc.OracleDriver" 
+   *  **"oracle.jdbc.dirver.OracleDriver"** 는 9i 이후로 **deprecated**.
