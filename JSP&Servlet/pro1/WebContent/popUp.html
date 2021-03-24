@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>버블버블팝팝</title>
+    <script type="text/javascript">
+        function setPopUpStart(obj){
+            if(obj.checked==true){
+                let expireDate = new Date();
+                // 유효기간 1달 설정
+                expireDate.setMonth(expireDate.getMonth()+1);
+                document.cookie="notShowPop=true; path=/; expires="+expireDate.toUTCString();
+                window.close();
+            }
+        }
+    </script>
+</head>
+<body>
+왈왈왈왈<br>
+toGMTString() -> toUTCString() 권장<br>
+<form>
+    <input type="checkbox" onclick="setPopUpStart(this)">24시간 보지 않기
+</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PopUp</title>
+    <script type = "text/javascript">
+        window.onload = pageLoad;   // function 호출
+        function pageLoad() {
+            let notShowPop = getCookieValue();
+            alert(notShowPop);
+            if(notShowPop != "true") {
+                window.open("popUp.html","pop","width=400,height=500,history=no,resizable=yes,scrollbars=no,menubar=yes");
+            }
+        }
+        function getCookieValue() {
+            let result = document.cookie.split(';').find(row => row.startsWith('notShowPop'));
+            if(result != undefined)
+                return result.split('=')[1];
+            return "false";
+        }
+
+        function deleteCookie() {
+            document.cookie = "notShowPop="+"false"+";path=/; expires=-1";  // notShowPop false로 설정
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="쿠키 삭제" onClick="deleteCookie()">
+</body>
+</html>
