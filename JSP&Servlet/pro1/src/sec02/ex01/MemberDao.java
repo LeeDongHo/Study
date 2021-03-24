@@ -100,6 +100,28 @@ public class MemberDao {
         }
     }
 
+    public boolean isExisted(MemberDto dto) {
+        boolean result = false;
+        String id = dto.getId();
+        String password = dto.getPassword();
+        try {
+            con = ods.getConnection();
+            String query = "select decode(count(*),1,'true','false') as result from member";
+            query += " where id=? and password = ?";
+            statement = con.prepareStatement(query);
+            statement.setString(1,id);
+            statement.setString(2,password);
+            ResultSet rs = statement.executeQuery();
+            rs.next();
+            result = Boolean.parseBoolean(rs.getString("result"));
+            System.out.println("result : " + result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
     /*    private void connect() throws SQLException, ClassNotFoundException{
         *//*
         Class.forName(driver);
