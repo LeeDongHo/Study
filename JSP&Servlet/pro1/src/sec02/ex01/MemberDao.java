@@ -32,16 +32,25 @@ public class MemberDao {
         }
     }
 
-    public List<MemberDto> listMembers() {
+    public List<MemberDto> listMembers(MemberDto dto) {
         List<MemberDto> list = new ArrayList<>();
+        String target = (dto == null) ? null : dto.getName();
         try {
             System.out.println("connect");
             con = ods.getConnection();
             String query = "select * from member";
+            if(target != null && !target.isEmpty()) {
+                query += " where name = ?";
+                statement = con.prepareStatement(query);
+                statement.setString(1,target);
+            } else {
+                statement = con.prepareStatement(query);
+            }
+
             System.out.println("Query : " + query);
             //ResultSet ps = statement.executeQuery(query);
             // PrepareStatement
-            statement = con.prepareStatement(query);
+
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String id = rs.getString("id");

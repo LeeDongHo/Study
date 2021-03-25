@@ -88,4 +88,7 @@
         <param-name>menu_goods</param-name>
         <param-value>상품조회 상품등록 상품수정 상품삭제</param-value>
     </context-param>
+    <welcome-file-list>
+        <welcome-file>welcome.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

@@ -2,6 +2,7 @@
 자바 웹을 다루는 기술 - 길벗  
 시작일 : 2021.03.15   
 [[저자 유투브 링크]](https://youtube.com/playlist?list=PLuvImYntyp-s76lJiia8YfskDRAypeoyh)   
+[[Notion]](https://www.notion.so/738916f1119847d79a2b7decd5fe0118) - private   
 **Version**   
 * JDK 11   
 * Tomcat 9
@@ -150,3 +151,5 @@ http://ip:port/project/servlet-mapping
 
 3. driverClassName="oracle.jdbc.OracleDriver" 
    *  **"oracle.jdbc.dirver.OracleDriver"** 는 9i 이후로 **deprecated**.
+
+4. context.xml 설정에서 maxActive -> maxTotal로 변경 / [출처](https://commons.apache.org/proper/commons-dbcp/configuration.html)

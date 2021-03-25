@@ -40,7 +40,7 @@ public class MemberServlet extends HttpServlet {
         }
 
         PrintWriter pw = response.getWriter();;
-        List list = dao.listMembers();
+        List list = dao.listMembers(null);
         pw.print("<table  border=1><tr align='center' bgcolor='lightgreen'>");
         pw.print("<td>아이디</td><td>비밀번호</td><td>이름</td><td>이메일</td><td>가입일</td><td>삭제</td></tr>");
 
