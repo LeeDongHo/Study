@@ -28,7 +28,7 @@
             }
         }
         function backToList(obj) {
-            obj.action = "${contextPath}/articleList.do";
+            obj.action = "${contextPath}/board/articleList.do";
             obj.submit();
         }
     </script>

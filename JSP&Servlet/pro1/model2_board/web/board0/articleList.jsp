@@ -9,6 +9,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="articleList" value="${articleMap.articleList}"/>
+<c:set var="totalArticles" value="${articleMap.totalArticles}"/>
+<c:set var="section" value="${articleMap.section}"/>
+<c:set var="pageNum" value="${articleMap.pageNum}"/>
 <%
     request.setCharacterEncoding("utf-8");
 %>
@@ -25,6 +29,9 @@
             text-align: center;
             font-size: 30px;
         }
+
+        .no-uline { text-decoration: none;}
+        .sel-page {text-decoration: none;color: #ff0000;}
     </style>
 </head>
 <body>
@@ -48,7 +55,7 @@
             <c:when test="${articleList != null}">
                 <c:forEach var="article" items="${articleList}" varStatus="articleNum">
                     <tr align="center">
-                        <td width="5%">${articleNum.count}</td>
+                        <td width="5%">${article.articleId}</td>
                         <td align="left" width="35%">
                         <span style="padding-right: 30px"></span>
                         <c:choose>
@@ -57,10 +64,10 @@
                                     <span style="padding-left: 20px"></span>
                                 </c:forEach>
                                 <span style="font-size: 12px;">[답변]</span>
-                                <a class="cls1" href="${contextPath}/board/viewArticle.do? articleId=${article.articleId}">${article.title}</a>
+                                <a class="cls1" href="${contextPath}/board/articleView.do? articleId=${article.articleId}">${article.title}</a>
                             </c:when>
                             <c:otherwise>
-                                <a class="cls1" href="${contextPath}/board/viewAricle.do?articleId=${article.articleId}">${article.title}</a>
+                                <a class="cls1" href="${contextPath}/board/articleView.do?articleId=${article.articleId}">${article.title}</a>
                             </c:otherwise>
                         </c:choose>
                         </td>
@@ -73,8 +80,44 @@
             </c:when>
         </c:choose>
     </table>
-<a class="cls1" href="${contextPath}/board/articleForm.do">
-    <p class="cls2">글쓰기</p>
-</a>
+
+
+    <div class="cls2">
+        <c:if test="${totArticles != null }" >
+            <c:choose>
+                <c:when test="${totArticles >100 }">  <!-- 글 개수가 100 초과인경우 -->
+                    <c:forEach   var="page" begin="1" end="10" step="1" >
+                        <c:if test="${section >1 && page==1 }">
+                            <a class="no-uline" href="${contextPath }/board/articleList.do?section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp; pre </a>
+                        </c:if>
+                        <a class="no-uline" href="${contextPath }/board/articleList.do?section=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
+                        <c:if test="${page ==10 }">
+                            <a class="no-uline" href="${contextPath }/board/articleList.do?section=${section+1}&pageNum=${section*10+1}">&nbsp; next</a>
+                        </c:if>
+                    </c:forEach>
+                </c:when>
+                <c:when test="${totArticles ==100 }" >  <!--등록된 글 개수가 100개인경우  -->
+                    <c:forEach   var="page" begin="1" end="10" step="1" >
+                        <a class="no-uline"  href="#">${page } </a>
+                    </c:forEach>
+                </c:when>
+
+                <c:when test="${totArticles< 100 }" >   <!--등록된 글 개수가 100개 미만인 경우  -->
+                    <c:forEach   var="page" begin="1" end="${totArticles/10 +1}" step="1" >
+                        <c:choose>
+                            <c:when test="${page==pageNum }">
+                                <a class="sel-page"  href="${contextPath }/board/articleList.do?section=${section}&pageNum=${page}">${page } </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="no-uline"  href="${contextPath }/board/articleList.do?section=${section}&pageNum=${page}">${page } </a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </c:when>
+            </c:choose>
+        </c:if>
+    </div>
+    <br><br>
+    <a  class="cls1"  href="${contextPath}/board/articleForm.do"><p class="cls2">글쓰기</p></a>
 </body>
 </html>
