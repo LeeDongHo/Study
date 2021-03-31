@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQery 테스트</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            alert($("#unique2").html());    // id가 unique2인 태그를 검색해 html()을 이용해 태그 값 가져오기
+        });
+        function addHtml() {
+            $('#article').html('변경완료'+'<br>')
+        };
+        function addImage() {
+            $(".class").html("<img src=../../../readme_image/서블릿_동작_과정.PNG")
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <p id="article"> </p>
+        <input type="button" value="태그로 문자열 변경" onclick="addHtml()"/>
+    </div>
+    <div class="class"></div>
+    <div class="class"></div>
+    <input type="button" value="클래스 이미지 변경" onclick="addImage()"/>
+</body>
+</html>
