@@ -4,15 +4,20 @@
 </p>
 
 [스프링 5 마스터 2/e](http://www.yes24.com/Product/Goods/92339993?OzSrank=2)   
-2021.04.21. ~
+2021.04.21. ~   
 
+---
+* IntelliJ
+* JDK 11
+---   
 :ballot_box_with_check: : 완료   
 :clock2: : 진행중
-|번호|주제|소주제|진행|
-|:--:|:--:|:--:|:--:|
-|1|스프링 환경|[프레임워크, 모듈 및 프로젝트](#1-스프링과-스프링-부트-시작하기)|:clock2:|
+|번호|주제|진행|
+|:--:|:--:|:--:|
+|1|[스프링 환경](#1-스프링-환경)|:ballot_box_with_check:|
+|2|[의존 관계 주입 및 단위테스트](#2의존-관계-주입-및-단위-테스트-하기) |:clock2:|
 ---
-## 1. 스프링과 스프링 부트 시작하기
+## 1. 스프링 환경
 <details>
 <summary> 다루는 내용 </summary>
 &nbsp;&nbsp;&nbsp;&nbsp;1. Spring framework가 인기있는 이유<br>
@@ -81,3 +86,78 @@ jdbcTemplate.update(INSERT_TODO_QUERY, bean.getDesciption(), bean.isDone());
 ```
 
 > 스프링은 예외 처리 로직을 중앙 집중화하고 한 곳에서 처리하는 방법을 제공한다. 또 모든 복잡한 코드는 래퍼 클래스에서 구현처리함으로 개발자들은 간결하게 코드를 작성할 수 있게 됐다.
+---
+## 2.의존 관계 주입 및 단위 테스트 하기
+이번 장에서는 의존 관계가 무엇인지 이해하고 DI의 필요성을 탐구한다. 
+<details>
+<summary> 다루는 내용 </summary>
+&nbsp;&nbsp;&nbsp;&nbsp;1. 의존 관계란 무엇인가?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2. 의존 관계 주입(DI)이란 무엇일까?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3. DI를 올바르게 사용하면 어플리케이션을 테스트 할 수 있을까?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4. Spring은 빈 팩토리와 ApplicationContext로 DI를 어떻게 구현할까?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;5. 컴포넌트 스캔이란?    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;6. 자바와 XML 어플리케이션 컨텍스트의 차이점은?    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;7. 스프링 컨텍스트의 단위 테스트는 어떻게 작성할까?    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;8. 모킹은 단위 테스트를 어떻게 쉽게 처리할까?    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;9. 다른 빈 스코프는 무엇일까?    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;10. CDI란 무엇이며 스프링은 CDI를 어떻게 지원할까?    <br>
+</details>
+---
+
+### **의존 관계**
+객체지향 어플리케이션은 객체끼리의 상호 작용을 중심으로 구축된다. 일반적인 어플리케이션은 서로 상호작용하는 수천개의 개체를 포함한다. (SOLID 원리 중 SRP 원칙을 준수한 결과)
+```java
+// DatServiceImpl은 BusinessServiceImpl의 의존관계
+public class BusinessServiceImpl {
+    public long calculateSum(User user) {
+        DataServiceImpl dataService = new DataServiceImpl();    // 인스턴스 생성
+        long sum = 0;
+        for(Data data : dataService.retrieveData(user)) {
+            sum += data.getValue();
+        }
+        return sum;
+    }
+}
+```
+
+#### **[단단한 결합]**
+```java
+DataServiceImpl dataService = new DataServiceImpl(); // DataServiceImpl2();
+```
+위 코드가 단단한 결합인 이유는 DataServiceImpl 클래스가 상위 클래스에 종속되기 때문이다. 만약 생성할 클래스가 바뀌면 코드도 수정해줘야한다.
+
+#### **[느슨한 결합]**
+```java
+public interface DataService {
+    ...
+}
+
+public class BusinessServiceImpl {
+    private final DataService dataService;
+
+    public BusinessServiceImpl BusinessServiceImpl(DataService dataService) {
+        this.dataService = dataService;
+    }
+
+    public long CalculateSum(User user) {
+        long sum = 0;
+        for (Data data : dataService.retrieveData(user)) {
+            sum += data.getValue();
+        }
+        return sum;
+    }
+}
+```
+위 코드와 같이 인터페이스, 생성자를 이용하면 느슨한 결합을 사용할 수 있다. BusinessServiceImpl 클래스도 인터페이스로 분리하면 더 느슨하게 만들 수 있다.
+
+#### **[용어 이해]**
+* **Bean** : 인스턴스. 위 예제에서는 businessService, datService가 해당.
+* **와이어링** : dataService를 생성해 businessService의 생성자에 인수 전달한 것을 말함
+* **DI** : 빈 식별, 생성 및 와이어링 의존 관계 프로세스
+* **IoC** : 의존 관계 책임을 프레임워크로 넘기는 것.
+
+#### **[스프링 빈 등록]**
+1. **@Component**   
+@Component를 이용하면 스프링빈 등록과 컴포넌트 스캔을 자동으로 설정할 수 있다. 스프링에서 흔히 사용하는 @Controller, @Repository, @Service 어노테이션들을 살펴보면 @Component를 가지고있다. <br> 
+
+2. **@Configuration**   
