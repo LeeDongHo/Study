@@ -78,5 +78,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="mybatis-3.5.6" level="project" />
   </component>
 </module>

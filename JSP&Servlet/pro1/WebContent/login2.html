@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	function fn_validate(action) {
+		var formLogin = document.formLogin;
+		var user_id = formLogin.user_id.value;
+		var user_password = formLogin.user_password.value;
+
+		if((user_id.length == 0 || user_id == "") || (user_password.length==0 || user_password == "")) {
+			alert("아이디와 비밀번호를 확인해주세요.");
+		} else {
+			formLogin.method = "post";
+			formLogin.action = action;
+			formLogin.submit();
+		}
+	}
+</script>
+<title>Login2 page</title>
+</head>
+<body>
+	<form name="formLogin" method="post" action="loginSession" encType="UTF-8">
+		아이디 : <input type="text" name="user_id"><br>
+		비밀번호 : <input type="password" name="user_password"><br>
+		<input type="button" onClick="fn_validate('loginSession')" value="로그인">
+		<input type="button" onClick="fn_validate('encodeURL')" value="노쿠키 로그인">
+		<input type="button" onClick="fn_validate('trueLogin')" value="DB 로그인">
+		<input type="reset" value="초기화">
+		<input type="hidden" name="user_address" value="서울특별시 관악구" >
+	</form>
+</body>
+</html>

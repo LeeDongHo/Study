@@ -20,7 +20,7 @@
 <%
     if(userId == null || userId.length()==0) {
 %>
-    <h2>아이디를 입력하세요<br><a href="../login.html">로그인 창으로</a></h2>
+    <jsp:forward page="../login.html"></jsp:forward>
 <%
     } else {
         if(userId.equals("admin")) {
