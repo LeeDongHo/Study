@@ -9,14 +9,16 @@
 |Chpater|Subject|Progress|Date|
 |:--:|:--|:--:|:--:|
 |2| [함수형 인터페이스와 람다 표현식](#2-함수형-인터페이스와-람다-표현식clock220210527)|:clock2:|2021.05.27
+<br>
 ---
-## 함수형 인터페이스와 람다 표현식
+<br> 
+
+## **함수형 인터페이스와 람다 표현식**
 수강일 : 2021.05.27.
 
-### **함수형 인터페이스**
+### **[함수형 인터페이스]**
 * interface에 **추상 메소드가 1개만** 존재하는 것.
 * **@FunctionalInterface** 어노테이션 추가 -> 추상 메서드 2개 이상일 경우 어노테이션에 에러 발생
-
 
 ```Java
 @FunctionalInterface
@@ -101,9 +103,10 @@ public class Foo {
     ```
     [틀린 예]
     ```Java
+    // 람다로 표현할 수 없다.
     public class Foo {
         public static void main(String[] args) {
-            int baseNumber = 10;    // 함수 바깥 - 변경 불가능
+            (final) int baseNumber = 10;    // 함수 바깥 - 변경 불가능
 
             RunSomething runSomething = new RunSomething() {
                 int innerNumber = 10; // 함수 바깥 - 변경 가능
@@ -118,4 +121,161 @@ public class Foo {
     }
     ```
     위와 같은 경우는 함수 바깥의 값을 참조하므로 **상태 값에 의존한다**라고 말 한다.   
-    함수 내부에서 외부 변수 변경은 문법적으로 막힌게 있고 가능한게 있지만 순수 함수라고 볼 수 없다.
+    함수 내부에서 외부 변수 변경은 문법적으로 막힌게 있고 가능한게 있지만 순수 함수라고 볼 수 없다.   
+
+결론 : 함수 내부나, 함수가 전달받은 파라미터만 가지고 사용해야한다.   
+
+### **[자바 기본 제공 함수형 인터페이스]**
+[java.lang.function](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html) package   -> 테이블에 작성되지 않은 인터페이스는 링크 참고
+<table>
+<thead bgcolor="Ivory">
+    <tr>
+        <th > Interface Name </th>
+        <th> Modifier and Type </th>
+        <th  align=center> Method
+        <th> Description </th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td rowspan=3>Function &ltT,R&gt </td>
+        <td> R </td>
+        <td> apply(T t)</td>
+        <td>T 타입을 받아 R타입 리턴</td>
+    </tr>
+    <tr>
+        <td> default &ltV&gt Function&ltT, V&gt </td>
+        <td> andThen(Function&lt ? super R, ? extends V&gt after)</td>
+        <td rowspan=2 align=center> 함수 조합에 이용</td> 
+    </tr>
+    <tr>
+        <td>default &ltV&gt Function&ltV,R&gt</td>
+        <td>compose()</td>
+    </tr>
+    <tr>
+        <td> BiFunction&ltT,U,R&gt</td>
+        <td> R </td>
+        <td> apply(T t, U u)</td>
+        <td> 입력값을 T,U 두개를 받아서 R을 리턴</td>
+    </tr>
+    <tr>
+        <td> Consumer&ltT&gt </td>
+        <td> void </td>
+        <td> accept(T t) </td>
+        <td> T타입을 받고 아무 값도 리턴하지 않음</td>
+    </tr>
+    <tr>
+        <td> Supplier&ltT&gt </td>
+        <td> T </td>
+        <td> get() </td>
+        <td> T 타입의 값을 제공</td>
+    </tr>
+    <tr>
+        <td rowspan=4> Predicate&ltT&gt </td>
+        <td> boolean </td>
+        <td> test(T t) </td>
+        <td> T타입을 받아 boolean을 리턴</td>
+    </tr>
+    <tr>
+        <td rowspan=3> default Predicate&ltT&gt </td>
+        <td> negate() </td>
+        <td rowspan=3 align=center> 합수 조합용 메소드 </td>
+    </tr>
+    <tr>
+        <td> or(Predicate&lt? super T&gt other) </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+        <td> UnaryOperator&ltT&gt </td>
+        <td colspan=2 align=center> Function&ltT, R&gt 을 상속 </td>
+        <td> T타입 값 하나를 받아 동일한 타입을 리턴 </td>
+    </tr>
+        <tr>
+        <td> BinaryOperator&ltT&gt </td>
+        <td colspan=2 align=center> BiFunction&ltT, U, R&gt 을 상속 </td>
+        <td> T타입 값 하나를 받아 동일한 타입을 리턴 </td>
+    </tr>
+</tbody>
+</table>
+
+### **[Lambda]**
+**[(인자 리스트) -> {바디}](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html)**
+
+[인자 리스트]   
+* 인자 없을 때 : ()
+* 인자 한 개일 때 : (one) / one
+* 인자 두 개이상 일 때 : (onw, two ~)
+* 인자 타입 생략 가능 -> 컴파일러가 추론(infer)
+
+[바디]
+* 화살표 오른쪽에 함수 본문 정의
+* 여러 줄인 경우 { } 사용
+* 한 줄인 경우 { }, return 생략 가능
+
+[변수 캡처 (Variable Capture)]
+* Local variable capture
+  * final, effective final인 경우에만 참조 가능 -> 아닌 경우 concurrency 문제 발생 가능
+* effective final (JAVA 8 지원)
+    ```Java
+        (final) int baseNumber = 10;    // final이 없지만 이 변수는 어디서도 변경하지 않는다.
+    ```
+  * "사실상" final인 변수
+  * final 사용하지 않은 변수를 익명 클래스 구현체 또는 람다에서 참조할 수 있다.
+* 익명 클래스 구현체와 달리 "Shadowing" 않는다. [참조](https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html#shadowing)
+  * 익명 클래스는 새로운 Scope를 만들지만 람다는 람다를 감싸고 있는 Scope와 같다.
+
+[Shadowing]   
+
+[옳은 예]
+```Java
+public class ShadowTest {
+
+    public int x = 0;
+
+    class FirstLevel {
+
+        public int x = 1;
+
+        void methodInFirstLevel(int x) {
+            System.out.println("x = " + x);
+            System.out.println("this.x = " + this.x);
+            System.out.println("ShadowTest.this.x = " + ShadowTest.this.x);
+        }
+    }
+
+    public static void main(String... args) {
+        ShadowTest st = new ShadowTest();
+        ShadowTest.FirstLevel fl = st.new FirstLevel();
+        fl.methodInFirstLevel(23);
+    }
+}
+
+// ---------------------- Output -------------------------------------------
+    x = 23
+    this.x = 1
+    ShadowTest.this.x = 0
+```
+
+[틀린 예]
+```Java
+public class Foo {
+
+    public static void main(String[] args) {
+        Foo foo = new Foo();
+        foo.run();
+    }
+
+    private void run() {
+        int baseNumber = 10;
+
+        // Lambda Error : run()과 같은 scope 공유
+        IntConsumer printInt = (baseNumber) -> {
+            System.out.println(i + baseNumber)
+        }
+
+        // Lambda 내부 Sout부분 오류발생 : 람다는 effective final, final만 사용 가능
+        baseNumber++;
+    }
+}
+```
