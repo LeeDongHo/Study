@@ -1,8 +1,8 @@
-package me.domo.java8;
+package me.domo.java8.Lambda;
 
 import java.util.function.*;
 
-public class Foo {
+public class App {
 
     public static void main(String[] args) {
         // 익명 내부 클래스 - anonymous inner class

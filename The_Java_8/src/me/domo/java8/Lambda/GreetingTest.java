@@ -1,7 +1,6 @@
-package me.domo.java8;
+package me.domo.java8.Lambda;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.function.*;
 
 public class GreetingTest {

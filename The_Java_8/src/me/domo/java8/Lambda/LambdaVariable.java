@@ -1,4 +1,4 @@
-package me.domo.java8;
+package me.domo.java8.Lambda;
 
 import java.util.function.*;
 

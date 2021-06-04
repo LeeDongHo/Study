@@ -1,4 +1,4 @@
-package me.domo.java8;
+package me.domo.java8.Lambda;
 
 public class Greeting {
 
