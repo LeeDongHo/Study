@@ -307,16 +307,107 @@ public class Foo {
 ```
 ## **인터페이스의 변화**
 ### **[Interface method - Default method]**
+```Java
+// Collection.java
+// Collectino interface의 모든 하위 클래스들은 removeIf를 가진다.
+default boolean removeIf(Predicate<? super E> filter) {
+    Objects.requireNonNull(filter);
+    boolean removed = false;
+    final Iterator<E> each = iterator();
+    while(each.hasNext()) {
+        if(filter.test(each.next())) {
+            each.remove();
+            removed = true;
+        }
+    }
+    return removed;
+}
+```
 * 인터페이스에 메소드 선언이 아니라 구현체를 제공하는 방법
 * 해당 인터페이스를 구현한 클래스를 깨트리지 않고 새 기능을 추가할 수 있다.
-* 기본 메소드는 구현체가 모르게 추가된 기능이기에 그만큼 리스트가 있다.
-  * 컴파일 에러는 아니지만 구현체에 따라 런타임 에러 발생 가능
-  * 반드시 문서화 (@implSpec 자바독 태그 사용)
-* Object가 제공하는 기능 (equals, hasCode)는 기본 메소드로 제공할 수 없다.
+* 기본 메소드는 구현체가 모르게 추가된 기능이기에 그만큼 리스크가 있다.
+    ```Java
+    public interface Foo {
+        void printName();
+
+        default void printNameUpperCase() {
+            System.out.println(getName().toUpperCase());
+        }
+
+        String getName();   // Name 값이 항상 있다고 보장할 수 없다.
+                            // name = null -> NullPointException
+    }
+    ```
+  * **컴파일 에러는 아니지만 구현체에 따라 런타임 에러 발생 가능**
+  * **반드시 문서화** (@implSpec 자바독 태그 사용)
+  * 구현 클래스에서 Overriding을 이용해 재정의 할 수 있다.
+* **Object가 제공하는 기능** default 메소드로 제공할 수 없다.
   * 구현체가 재정의 해야한다.
+  * 인터페이스에서 추상 메서드로 선언하는 것은 괜찮다. 
+    * 모두 공통으로 제공하기 때문에 추상 메서드로 분류하지 않는다.
 * 본인이 수정할 수 있는 인터페이스만 수정 가능하다
 * 인터페이스를 상속받는 인터페이스에서 다시 추상 메소드로 변경할 수 있다.
-* 인터페이스 구현체가 재정의 할 수도 있다.
+  ```Java
+  public interface Foo {
+      default void getNameUpperCase() {
+          ...
+      }
+  }
+
+  public interface Bar extends Foo {
+      void getNameUpperCase();  // 추상 메서드로 선언한 경우 구현 클래스에서 재정의 필수
+
+      // 추상 메서드로 선언 하지 않은 경우 상위 인터페이스 그대로 사용 가능
+  }
+  ```
+  [Bonus]
+  ```Java
+  public interface Foo {
+      default void getNameUpperCase() {
+          System.out.println("Foo");
+      }
+  }
+
+  public interface Bar {
+      default void getNameUpperCase() {
+          System.out.println("Bar");
+      }
+  }
+
+  public class Test implements Foo, Bar {
+      ...
+        // @Override
+        // public void printNameUpperCase() {
+        //    ...
+        //}
+  }
+  ```
+    * Bar, Foo 중 무엇을 사용할지 모르기 때문에 **컴파일 에러** 발생
+    * 충돌하는 default method 직접 override 해야한다.
 
 ### **[Interface method - Static method]**
-* 해당 타입 관련 헬터 또는 유틸리티 메소드를 제공할 때 인터페이스에 static method 제공 가능
+* 해당 타입 관련 헬퍼 또는 유틸리티 메소드를 제공할 때 인터페이스에 static method 제공 가능
+  
+### **[Interface method - JAVA API]**
+JAVA8 에서 추가된 기본 메소드로 인해 API에 변화가 발생했다. 그 중 일부 API를 살펴보도록 한다.
+* [Iterable](https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)
+  * forEach()
+  * [spliterator()](https://docs.oracle.com/javase/8/docs/api/java/util/Spliterator.html)
+* [Collection](https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html)
+  * stream() / parallelStream()
+    ```Java
+    // Collection.java -> Stream 원형
+    default Stream<E> stream() {
+        return StreamSupport.stream(spliterator(), false);
+    }
+    ----------------------------------------------------------
+    name.stream();
+    ```
+  * removeIf(Predicate)
+  * spliterator()
+* [Comparator](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html)
+  * reversed()
+  * thenComparing()
+  * static reverseOrder() / naturalOrder()
+  * static nullsFirst) / nullsLast()
+  * static comparing()
