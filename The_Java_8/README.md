@@ -9,7 +9,8 @@
 |Chpater|Subject|Progress|Date|
 |:--:|:--|:--:|:--:|
 |2| [함수형 인터페이스와 람다 표현식](#함수형-인터페이스와-람다-표현식)|:ballot_box_with_check:|2021.05.27.
-|3| [인터페이스의 변화](#인터페이스의-변화)|:clock2:|2021.06.02.
+|3| [인터페이스의 변화](#인터페이스의-변화)|:ballot_box_with_check:|2021.06.02.
+|4| [Stream](#stream)|:clock2:|2021.06.05.
 <br>
 ---
 <br> 
@@ -305,6 +306,8 @@ public class Foo {
     Arrays.sort(names, String::compareToIgnoreCase);
     System.out.println(Arrays.toString(names));
 ```
+---
+
 ## **인터페이스의 변화**
 ### **[Interface method - Default method]**
 ```Java
@@ -411,3 +414,25 @@ JAVA8 에서 추가된 기본 메소드로 인해 API에 변화가 발생했다.
   * static reverseOrder() / naturalOrder()
   * static nullsFirst) / nullsLast()
   * static comparing()
+
+---
+## **[Stream]**
+### **[Stream]**
+sequence of elements supporting sequential and parallel aggregate operations
+* 데이터를 저장하고 있는 Collection이 아니다.
+* Funtional in nature, 스트림이 처리하는 데이터 소스를 변경하지 않는다.
+* 스트림으로 처리하는 데이터는 오직 한번만 처리한다.
+* 무제한일 수도 있다. (Short Circuit 메소드를 사용해서 제한 가능)
+* 중개 오퍼레이션은 근본적으로 Lazy 하다.
+* 손쉽게 병렬 처리 할 수 있다.
+### **[Stream pipeline]**
+* 0 또는 다수의 intermediate operation (중개 오퍼레이션)과 한 개의 종료 오퍼레이션으로 구성한다.
+* 스트림 데이터 소스는 오직 터미널 오퍼레이션을 실행할 때 에만 처리한다.
+### **[intermediate operation]**
+* stream을 리턴한다.
+* stateless / stateful operation으로 더 상세하게 구분 가능하다. 
+    (distinct, sorted 처럼 이전 소스 데이터 참조해야하는건 stateful opreation)
+* filter, map, limit, skip, sorted, ...
+### **[terminal operation]]**
+* stream을 리턴하지 않는다.
+* collect, allMatch, count, forEach, min, max, ...
