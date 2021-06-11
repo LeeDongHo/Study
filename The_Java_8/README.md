@@ -416,23 +416,131 @@ JAVA8 에서 추가된 기본 메소드로 인해 API에 변화가 발생했다.
   * static comparing()
 
 ---
-## **[Stream]**
-### **[Stream]**
+## **[Stream]** 
+[참고](https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html)   
+연속된 데이터를 처리하는 operation들의 모임. Stream 자체가 데이터는 아니다.
+Collection은 데이터를 보유하고 있는 것이고 Stream은 데이터를 이용해 어떠한 처리를 하는 것을 말한다.
+```Java
+public static void main(String[] args) {
+    List<String> names = new ArrayList<>();
+    names.add("doho");
+    names.add("foo");
+    names.add("fighting");
+    names.add("grape");
+}
+```
+### **[[Stream]](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)**
 sequence of elements supporting sequential and parallel aggregate operations
 * 데이터를 저장하고 있는 Collection이 아니다.
 * Funtional in nature, 스트림이 처리하는 데이터 소스를 변경하지 않는다.
+    ```Java
+    code>
+
+        Stream<String> stringStream = names.stream().map(String::toUpperCase);
+
+        names.forEach(System.out::println);
+        System.out.println("-------------------------------");
+        stringStream.forEach(System.out::println);
+
+    output>
+
+        doho
+        foo
+        fighting
+        grape
+        -------------------------------
+        DOHO
+        FOO
+        FIGHTING
+        GRAPE
+    ```
 * 스트림으로 처리하는 데이터는 오직 한번만 처리한다.
 * 무제한일 수도 있다. (Short Circuit 메소드를 사용해서 제한 가능)
 * 중개 오퍼레이션은 근본적으로 Lazy 하다.
+  * 다 처리하지 않아도 중간에 끝낼 수 있다.
+  * terminal operation이 있어야 intermediate operation이 실행된다.
 * 손쉽게 병렬 처리 할 수 있다.
 ### **[Stream pipeline]**
+```Java
+    List<String> collect = names.stream().map(s -> {
+        System.out.println(s);
+        return s.toUpperCase();
+    }).collect(Collectors.toList());    //  terminate operation
+```
 * 0 또는 다수의 intermediate operation (중개 오퍼레이션)과 한 개의 종료 오퍼레이션으로 구성한다.
 * 스트림 데이터 소스는 오직 터미널 오퍼레이션을 실행할 때 에만 처리한다.
 ### **[intermediate operation]**
-* stream을 리턴한다.
+terminal operation이 오기 전 까지 수행되지 않는다.
+* **stream을 리턴한다.**
 * stateless / stateful operation으로 더 상세하게 구분 가능하다. 
     (distinct, sorted 처럼 이전 소스 데이터 참조해야하는건 stateful opreation)
 * filter, map, limit, skip, sorted, ...
 ### **[terminal operation]]**
-* stream을 리턴하지 않는다.
+* **stream을 리턴하지 않는다.**
 * collect, allMatch, count, forEach, min, max, ...
+
+### **[parallelStream()]**
+병렬 처리 스트림
+```Java
+code>
+    System.out.println("ParallelSteram====================");
+    names.parallelStream().map((s) -> {
+        System.out.println(s + " " + Thread.currentThread().getName());
+        return s.toUpperCase();
+    }).collect(Collectors.toList());
+
+    System.out.println("\nStream====================");
+    names.stream().map((s) -> {
+        System.out.println(s + " " + Thread.currentThread().getName());
+        return s.toUpperCase();
+    }).collect(Collectors.toList());
+
+output>
+//ParallelSteram====================
+fighting main
+doho ForkJoinPool.commonPool-worker-23
+foo ForkJoinPool.commonPool-worker-19
+grape ForkJoinPool.commonPool-worker-5
+
+//Stream====================
+doho main
+foo main
+fighting main
+grape main
+```
+parallelStream()을 쓴다고 해서 무조건 빨라지지 않는다. 이유는 스레드 생성, 컨텍스트 스위칭 등 비용이 소모되기 때문에 배 보다 배꼽이 더 큰 경우가 발생할 수 있다.
+ 대규모 처리를 할 때나 유용하다. 만약 멀티 스레드를 사용하고 싶다면 직접 서비스 테스트 하는 것을 권장한다.
+
+ ### **[Intermediate & Terminal operation]**
+ **[Intermediate operation - stateless]**   
+ 1. filter
+ 2. map
+ 3. mapToInt
+ 4. mapToLong
+ 5. mapToDouble
+ 6. flatMap
+ 7. flatMapToInt
+ 8. flatMapToLong
+ 9. flatMapToDouble
+ 10. peek
+
+ **[Intermediate operation - stateful]**   
+ 1. distinct
+ 2. sorted
+ 3. skip
+ 4. limit : short-circuiting
+
+**[Terminate operation]**
+1. forEach
+2. forEachOrdered
+3. toArray
+4. reduce
+5. collect
+6. min
+7. max
+8. count
+9. anyMatch : short-circuiting
+10. allMatch : short-circuiting
+11. noneMatch : short-circuiting
+12. findFirst
+13. findAny
