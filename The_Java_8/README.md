@@ -8,9 +8,10 @@
 
 |Chpater|Subject|Progress|Date|
 |:--:|:--|:--:|:--:|
-|2| [함수형 인터페이스와 람다 표현식](#함수형-인터페이스와-람다-표현식)|:ballot_box_with_check:|2021.05.27.
-|3| [인터페이스의 변화](#인터페이스의-변화)|:ballot_box_with_check:|2021.06.02.
-|4| [Stream](#stream)|:clock2:|2021.06.05.
+|1| [함수형 인터페이스와 람다 표현식](#함수형-인터페이스와-람다-표현식)|:ballot_box_with_check:|2021.05.27.
+|2| [인터페이스의 변화](#인터페이스의-변화)|:ballot_box_with_check:|2021.06.02.
+|3| [Stream](#stream)|:ballot_box_with_check:|2021.06.05.|
+|4| [Optional](#Optional)|:clock2:|2021.06.24|
 <br>
 ---
 <br> 
@@ -544,3 +545,24 @@ parallelStream()을 쓴다고 해서 무조건 빨라지지 않는다. 이유는
 11. noneMatch : short-circuiting
 12. findFirst
 13. findAny
+
+## **[Optional](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)** 
+> https://www.oracle.com/technical-resources/articles/java/java8-optional.html   
+> Effective java e/3 Item 55.    
+
+오직 하나의 값이 있을 수도 없을 수도 있는 컨테이너.   
+
+---
+**[Method 작업 중 리턴 값이 제대로 되지 않았을 때 처리법]**   
+   
+1. 예외를 던진다. (Stack trace를 사용하기에 비싸다)
+2. null을 리턴한다. -> 코드 사용자에게 부담 전가
+3. Optional 리턴한다. -> 사용자에게 NULL이 있을 수도 있음을 명시후 처리를 강제한다.   
+---
+**[주의]**   
+1. Return으로만 쓰기 권장 (Argument, Map의 Key, Instance field type 사용 금지)
+2. Optional을 사용하면 null 반환 금지
+3. Primitive optional 존재. OptionalInt, OptionalLong ...
+4. Collection, Map, Stream Array, Optional은 Optional로 감싸지 않기.
+---
+[Goto Code]()

@@ -1,5 +1,8 @@
 package me.domo.java8.Steram;
 
+import me.domo.java8.Optional.Progress;
+
+
 public class OnlineClass {
 
     private Integer id;
@@ -8,6 +11,19 @@ public class OnlineClass {
 
     private boolean closed;
 
+    public Progress progress;
+
+    public Progress getProgress() {
+        if(this.progress == null) {
+            // 예외처리 필수로 해줘야하는 단점 생김.
+            throw new IllegalStateException();
+        }
+        return progress;
+    }
+
+    public void setProgress(Progress progress) {
+        this.progress = progress;
+    }
 
     public OnlineClass(Integer id, String title, boolean closed) {
         this.id = id;
